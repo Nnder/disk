@@ -7,7 +7,13 @@ const LoadFile = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.files)
         const files: File[] = Array.from(e.target.files ?? [])
-        setFiles(files)
+        if (files.length <= 100){
+            setFiles(files)
+        } else {
+            alert("Вы выбрали больше 100 файлов")
+        }
+
+        console.log(files.length)
     }
 
     const handleClick = ()=>{
@@ -15,7 +21,7 @@ const LoadFile = () => {
     }
 
     return (
-        <div className="flex flex-col items-center m-4">
+        <div className="flex flex-col items-center h-full min-h-screen">
 
             <div onClick={handleClick}
                 className="w-44 p-4 m-2 flex flex-col items-center gap-2 bg-blue-200 text-black rounded-lg hover:bg-blue-300 cursor-pointer">
@@ -24,7 +30,7 @@ const LoadFile = () => {
                 <input type="file" multiple={true} ref={ref} onChange={handleChange} className="hidden"/>
             </div>
 
-            <div className="m-2">
+            <div className="m-2 flex flex-wrap justify-between">
                 {files.map((file, i)=>(
                     <FileCard key={i} name={file.name} size={file.size} status={'Selected'}/>
                 ))}

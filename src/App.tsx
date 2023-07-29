@@ -1,10 +1,10 @@
-import LoadPage from "./pages/LoadPage.tsx";
+import DownloadPage from "./pages/DownloadPage.tsx";
 
 function App() {
 
   return (
     <>
-        <LoadPage/>
+        <DownloadPage/>
     </>
   )
 }
